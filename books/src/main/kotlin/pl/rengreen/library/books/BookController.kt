@@ -12,4 +12,8 @@ class BookController(private val bookService: BookService) {
     @GetMapping("/{bookId}")
     fun getBookInfo(@PathVariable bookId: Long) =
             bookService.getBookInfo(bookId)
+
+    @GetMapping("/is-available/{bookId}")
+    fun isBookAvailable(@PathVariable bookId: Long) =
+            bookService.isBookAvailable(bookId)
 }
