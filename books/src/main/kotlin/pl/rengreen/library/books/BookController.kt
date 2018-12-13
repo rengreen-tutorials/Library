@@ -5,6 +5,11 @@ import pl.rengreen.library.books.BookService
 @RestController
 @RequestMapping("/api/books")
 class BookController(private val bookService: BookService) {
+
     @GetMapping("/")
     fun getAvailableBooks() = bookService.getAvailableBooks()
+
+    @GetMapping("/{bookId}")
+    fun getBookInfo(@PathVariable bookId: Long) =
+            bookService.getBookInfo(bookId)
 }
