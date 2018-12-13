@@ -15,4 +15,11 @@ class BookService(private val bookRepository: BookRepository) {
                     else -> throw NoSuchElementException("Book with id $bookId does not exist")
                 }
             }
+
+    fun isBookAvailable(bookId: Long) = with(bookRepository.findById(bookId)) {
+        when {
+            this.isPresent -> this.get().available
+            else -> throw NoSuchElementException("Book with id $bookId does not exist")
+        }
+    }
 }
