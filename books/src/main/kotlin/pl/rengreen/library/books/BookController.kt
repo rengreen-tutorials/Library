@@ -20,4 +20,12 @@ class BookController(private val bookService: BookService) {
     @PostMapping("/new")
     fun addBook(@RequestBody newBook: BookDTO) =
             bookService.addBook(newBook.title, newBook.author, newBook.releaseYear)
+
+    @PutMapping("/available/{bookId}")
+    fun markBookAsAvailable(@PathVariable bookId: Long) =
+            bookService.markBookAsAvailable(bookId)
+
+    @PutMapping("/unavailable/{bookId}")
+    fun markBookAsUnavailable(@PathVariable bookId: Long) =
+            bookService.markBookAsUnavailable(bookId)
 }
