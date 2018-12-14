@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service
 class BookService(private val bookRepository: BookRepository) {
 
     fun getAvailableBooks() = bookRepository.findAll().filter {
-        it.available }
+        it.available
+    }
 
     fun getBookInfo(bookId: Long): BookDTO =
             with(bookRepository.findById(bookId)) {
@@ -22,4 +23,7 @@ class BookService(private val bookRepository: BookRepository) {
             else -> throw NoSuchElementException("Book with id $bookId does not exist")
         }
     }
+
+    fun addBook(title: String, author: String, publicationYear: Int) =
+            bookRepository.save(Book(0, title, author, publicationYear, true))
 }
