@@ -16,4 +16,8 @@ class BookController(private val bookService: BookService) {
     @GetMapping("/is-available/{bookId}")
     fun isBookAvailable(@PathVariable bookId: Long) =
             bookService.isBookAvailable(bookId)
+
+    @PostMapping("/new")
+    fun addBook(@RequestBody newBook: BookDTO) =
+            bookService.addBook(newBook.title, newBook.author, newBook.releaseYear)
 }
